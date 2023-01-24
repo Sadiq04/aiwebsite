@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Home from '../views/Home.vue'
+import Form from '../views/Form.vue'
+import Project from '../views/Project.vue'
+import Projects from '../views/Projects.vue'
 
 Vue.use(VueRouter)
 
@@ -9,6 +12,21 @@ const routes: Array<RouteConfig> = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/form',
+    name: 'Form',
+    component: Form
+  },
+  {
+    path: '/project',
+    name: 'Project',
+    component: Project
+  },
+  {
+    path: '/projects',
+    name: 'Projects',
+    component: Projects
   },
   {
     path: '/about',
