@@ -22,7 +22,7 @@
             <h1 style="font-size: 60px">Who we are. What we do.</h1>
             <h1 style="font-size: 30px;">We are a group of passionate students who are interested in AI/ML development and deployment. </h1>
             <h1 style="font-size: 30px;">Our mission is to foster a community of like-minded individuals who can come together to share ideas, collaborate on projects, and push the boundaries of what is possible with AI.</h1>
-            <h1 style="font-size: 30px;">We will hold weekly meetings as well, workshops, conferences as well as learning sessions, sponsored by companies that are pioneers in the AI/ML areas.</h1>
+            <h1 style="font-size: 30px;">We will hold weekly meetings, workshops, conferences as well as learning sessions, sponsored by companies that are pioneers in the AI/ML areas.</h1>
             <h1>(Insert group photo)</h1>
         </div>
         <div style="position: absolute; top: 125%">

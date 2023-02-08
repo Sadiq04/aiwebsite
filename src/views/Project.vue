@@ -50,13 +50,14 @@
  <script>
 import currentProjects from "@/assets/currentProjects.js"
 import pastProjects from "@/assets/pastProjects.js"
+import axios from "axios";
+
  export default {
    data() {
      return {
       currentProjects,
       pastProjects,
       index: 0,
-
      }
    },
    mounted() {

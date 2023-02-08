@@ -1,5 +1,6 @@
 <template>
     <div>
+        <router-link to="/projectAddingForm"><button style="position: absolute; top: 40%; left: 20%; height: 8vh; width: 25vh; font-size: 3vh">Propose Project</button></router-link>
         <div>
             <h1 style="position:relative; margin-top:2%; float: left; margin-left: 10%; font-size: 60px">Current Projects:</h1>
             <h1 style="margin-top:10%" v-if="currentProjects.length==0">There are no projects currently being worked on</h1>

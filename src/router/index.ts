@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Home from '../views/Home.vue'
-import ProjectProposalForm from '../views/ProjectProposalForm.vue'
 import ProjectAddingForm from '../views/ProjectAddingForm.vue'
 import ApplicationForm from '../views/ApplicationForm.vue'
 import Project from '../views/Project.vue'
@@ -14,11 +13,6 @@ const routes: Array<RouteConfig> = [
     path: '/',
     name: 'Home',
     component: Home
-  },
-  {
-    path: '/projectProposalForm',
-    name: 'ProjectProposalForm',
-    component: ProjectProposalForm
   },
   {
     path: '/projectAddingForm',

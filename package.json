@@ -9,24 +9,29 @@
   "dependencies": {
     "@cloudinary/url-gen": "^1.8.7",
     "@cloudinary/vue": "^1.9.0",
+    "body-parser": "^1.20.1",
     "bootstrap-vue": "^2.23.1",
     "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "nodemailer": "^6.9.1",
     "php": "^1.0.2",
+    "twilio": "^3.84.1",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0"
   },
   "devDependencies": {
-    "@types/express": "^4.17.16",
+    "@types/express": "^4.17.17",
     "@vue/cli-plugin-router": "~4.5.15",
     "@vue/cli-plugin-typescript": "~4.5.15",
     "@vue/cli-plugin-vuex": "~4.5.15",
     "@vue/cli-service": "~4.5.15",
     "nodemon": "^2.0.20",
+    "npm-run-all": "^4.1.5",
     "ts-node": "^10.9.1",
     "typescript": "~4.1.5",
     "vue-template-compiler": "^2.6.11",
-    "webpack": "^5.75.0",
+    "webpack": "^4.0.0",
     "webpack-cli": "^5.0.1"
   }
 }
