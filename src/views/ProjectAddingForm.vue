@@ -124,6 +124,17 @@ export default {
             }
             if(this.adding){this.$store.commit('addProject', project)}
             else{this.$store.commit('addProjectProposal', project)}
+            this.name = "";
+            this.field = "";
+            this.abstract = "";
+            this.description = "";
+            this.projectLeader = "";
+            this.projectLeaderEmail = "";
+            this.projectLeaderPhone = "";
+            this.projectMembers = "";
+            this.goals = "";
+            this.githubLink = "";
+            this.img = "";
     }
    } 
 }}
