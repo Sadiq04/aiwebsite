@@ -1,6 +1,7 @@
 <template>
     <div>
-        <div style="float: left; text-align: left; margin-left: 5%; font-size: 20px; margin-top: 5%">
+        <router-link style="position: absolute; left: 1%; top: 3%; font-size: 3vh" to="/projects">Projects</router-link>
+        <div style="float: left; text-align: left; margin-left: 5%; font-size: 1.5vh; margin-top: 5%">
             <label style="margin-top: 3%" for="name">Project Name </label><span style="color: red">*</span><span>:</span>
             <input type="text" id="name" v-model="name" /><br>
             <h3 v-if="showNameAlert" style="margin-top: 1%; color: red; font-size: 15px">Please enter the name of the project.</h3>
@@ -38,12 +39,10 @@
 </template>
 
 <script>
-import currentProjects from '@/assets/currentProjects';
-import projectProposals from '@/assets/projectProposals';
 export default {
    data() {
      return {
-      adding: false,
+      adding: true,
       name: "",
       field: "",
       abstract: "",
@@ -59,6 +58,7 @@ export default {
       showNameAlert: false,
       showFieldAlert: false,
       showAbstractAlert: false,
+      showDescriptionAlert: false,
       showLeaderAlert: false,
       showLeaderEmailAlert: false,
       showLeaderPhoneAlert: false,
@@ -104,8 +104,8 @@ export default {
         if(this.githubLink==""){this.showGitHubLinkAlert=true; valid=false}
         else{this.showGitHubLinkAlert=false}
         if(valid){
-            this.projectMembers = this.projectMembers.split(",")
-            this.goals = this.goals.split(",")
+            let projectMembers = this.projectMembers.split(",")
+            let goals = this.goals.split(",")
             let goalCompletion = []
             for(let i = 0; i < this.goals.length; i++){goalCompletion.push(0)}
             let project = {
@@ -116,14 +116,14 @@ export default {
                 projectLeader: this.projectLeader,
                 projectLeaderMail: this.projectLeaderMail,
                 projectLeaderPhone: this.projectLeaderPhone,
-                projectMembers: this.projectMembers,
-                goals: this.goals,
+                projectMembers,
+                goals,
                 goalCompletion,
                 githubLink: this.githubLink,
                 img: this.img,
             }
-            if(adding){currentProjects.push(project)}
-            else{projectProposals.push(project)}
+            if(this.adding){this.$store.commit('addProject', project)}
+            else{this.$store.commit('addProjectProposal', project)}
     }
    } 
 }}

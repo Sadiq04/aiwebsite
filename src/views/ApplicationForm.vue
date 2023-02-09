@@ -1,16 +1,17 @@
 <template>
     <div>
-        <div style="float: left; text-align: left; margin-left: 5%; font-size: 20px; margin-top: 5%">
+        <router-link style="position: absolute; top: 4%; left: 0%; height: 8vh; width: 25vh; font-size: 3vh" to="/">Home</router-link>
+        <div style="float: left; text-align: left; margin-left: 5%; font-size: 1.5vh; margin-top: 5%">
             <label style="margin-top: 3%" for="name">Full name </label><span style="color: red">*</span><span>:</span>
             <input type="text" id="name" v-model="fullName" /><br>
             <h3 v-if="showNameAlert" style="margin-top: 1%; color: red; font-size: 15px">Please enter your full name.</h3>
             <label style="margin-top: 3%" for="email">Sabanci email </label><span style="color: red">*</span><span>:</span>
             <input type="text" id="email" v-model="email" /><br>
             <h3 v-if="showEmailAlert" style="margin-top: 1%; color: red; font-size: 15px">Please enter your email address.</h3>
+            <h3 v-if="showSabanciEmailAlert" style="margin-top: 1%; color: red; font-size: 15px">Please make sure you entered your Sabanci email address.</h3>
             <label style="margin-top: 3%" for="email">Phone number </label><span style="color: red">*</span><span>:</span>
             <input type="text" id="email" v-model="phone" /><br>
             <h3 v-if="showPhoneAlert" style="margin-top: 1%; color: red; font-size: 15px">Please enter your phone number.</h3>
-            <h3 v-if="showSabanciEmailAlert" style="margin-top: 1%; color: red; font-size: 15px">Please make sure you entered your Sabanci email address.</h3>
             <label style="margin-top: 3%" for="program">Program / Department </label><span style="color: red">*</span><span>:</span>
             <input type="text" id="program" v-model="program" /><br>
             <h3 v-if="showProgramAlert" style="margin-top: 1%; color: red; font-size: 15px">Please enter your Program/Major.</h3>
@@ -52,7 +53,6 @@
 
 <script>
 import { Email } from "@/smtp.js"
-import memberApplications from '@/assets/memberApplications';
 export default {
    data() {
      return {
@@ -120,7 +120,6 @@ export default {
         else{this.showClubKnowledgeAlert=false}
         if(this.clubInterest==""){this.showClubInterestAlert=true; valid=false}
         else{this.showClubInterestAlert=false}
-        valid = true
         if(valid){
             /*const res = fetch('http://localhost:465',
             {
@@ -143,7 +142,7 @@ export default {
                     })
             })*/
             //console.log(application)
-            memberApplications.push({   
+            this.$store.commit('addMemberApplication', {   
                 fullName: this.fullName,
                 email: this.email,
                 program: this.program,
@@ -156,6 +155,17 @@ export default {
                 GitHub: this.GitHub,
                 //CV: this.CV,
             })
+            this.fullName = "";
+            this.phone = "";
+            this.email = "";
+            this.program = "";
+            this.year = "";
+            this.GPA = "";
+            this.aiInterest = "";
+            this.clubKnowledge = "";
+            this.clubInterest = "";
+            this.LinkedIn = "";
+            this.GitHub = "";
         }
     }
    } 

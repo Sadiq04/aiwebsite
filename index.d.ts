@@ -1,0 +1,1 @@
+'@brightcove/react-player-loader'
