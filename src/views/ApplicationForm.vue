@@ -53,6 +53,7 @@
 
 <script>
 import { Email } from "@/smtp.js"
+import memberApplications from '@/assets/memberApplications';
 export default {
    data() {
      return {
@@ -141,6 +142,7 @@ export default {
                         //CV: this.CV,
                     })
             })*/
+
             //console.log(application)
             this.$store.commit('addMemberApplication', {    
                 fullName: this.fullName,
@@ -167,7 +169,8 @@ export default {
             this.clubInterest = "";
             this.LinkedIn = "";
             this.GitHub = "";
-           // })
+            
+            //})
         }
     }
    } 
