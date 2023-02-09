@@ -155,7 +155,7 @@ export default {
                 GitHub: this.GitHub,
                 //CV: this.CV,
             })
-            /*
+            
             this.fullName = "";
             this.phone = "";
             this.email = "";
@@ -167,7 +167,7 @@ export default {
             this.clubInterest = "";
             this.LinkedIn = "";
             this.GitHub = "";
-            })*/
+           // })
         }
     }
    } 
