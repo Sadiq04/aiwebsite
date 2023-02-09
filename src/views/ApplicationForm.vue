@@ -142,7 +142,7 @@ export default {
                     })
             })*/
             //console.log(application)
-            this.$store.commit('addMemberApplication', {   
+            this.$store.commit('addMemberApplication', {    
                 fullName: this.fullName,
                 email: this.email,
                 program: this.program,
@@ -155,6 +155,7 @@ export default {
                 GitHub: this.GitHub,
                 //CV: this.CV,
             })
+            /*
             this.fullName = "";
             this.phone = "";
             this.email = "";
@@ -166,6 +167,7 @@ export default {
             this.clubInterest = "";
             this.LinkedIn = "";
             this.GitHub = "";
+            })*/
         }
     }
    } 
