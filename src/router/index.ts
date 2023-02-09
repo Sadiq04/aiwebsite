@@ -5,6 +5,8 @@ import ProjectAddingForm from '../views/ProjectAddingForm.vue'
 import ApplicationForm from '../views/ApplicationForm.vue'
 import Project from '../views/Project.vue'
 import Projects from '../views/Projects.vue'
+import Applicant from '../views/Applicant.vue'
+import ViewApplications from '../views/ViewApplications.vue'
 
 Vue.use(VueRouter)
 
@@ -33,6 +35,16 @@ const routes: Array<RouteConfig> = [
     path: '/projects',
     name: 'Projects',
     component: Projects
+  },
+  {
+    path: '/applicant/:id',
+    name: 'Applicant',
+    component: Applicant
+  },
+  {
+    path: '/viewApplications',
+    name: 'ViewApplications',
+    component: ViewApplications
   },
   {
     path: '/about',
