@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VuexPersist from 'vuex-persist';
 import members from '@/assets/members';
 import memberApplications from '@/assets/memberApplications';
 import projectProposals from '@/assets/projectProposals';
@@ -7,9 +8,21 @@ import currentProjects from '@/assets/currentProjects';
 import backupCurrentProjects from '@/assets/backupCurrentProjects';
 import pastProjects from '@/assets/pastProjects';
 
+const vuexLocalStorage = new VuexPersist({
+  key: 'vuex', // The key to store the state on in the storage provider.
+  storage: window.localStorage, // or window.sessionStorage or localForage
+  // Function that passes the state and returns the state with only the objects you want to store.
+  // reducer: state => state,
+  // Function that passes a mutation and lets you decide if it should update the state in localStorage.
+  // filter: mutation => (true)
+})
+
+
 Vue.use(Vuex)
 export default new Vuex.Store({
+  plugins: [vuexLocalStorage.plugin],
   state: {
+    isAdmin: false,
     members,
     memberApplications,
     projectProposals,
@@ -105,8 +118,8 @@ export default new Vuex.Store({
         result: project[1],
       })
       state.currentProjects.splice(project[0], 1)
-    }
-
+    },
+    makeAdmin(state){state.isAdmin=true;}
   },
   actions: {
   },
