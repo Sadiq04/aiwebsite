@@ -7,10 +7,10 @@
             <label style="margin-top: 3%" for="email">Sabanci email </label><span style="color: red">*</span><span>:</span>
             <input type="text" id="email" v-model="email" /><br>
             <h3 v-if="showEmailAlert" style="margin-top: 1%; color: red; font-size: 15px">Please enter your email address.</h3>
+            <h3 v-if="showSabanciEmailAlert" style="margin-top: 1%; color: red; font-size: 15px">Please make sure you entered your Sabanci email address.</h3>
             <label style="margin-top: 3%" for="email">Phone number </label><span style="color: red">*</span><span>:</span>
             <input type="text" id="email" v-model="phone" /><br>
             <h3 v-if="showPhoneAlert" style="margin-top: 1%; color: red; font-size: 15px">Please enter your phone number.</h3>
-            <h3 v-if="showSabanciEmailAlert" style="margin-top: 1%; color: red; font-size: 15px">Please make sure you entered your Sabanci email address.</h3>
             <label style="margin-top: 3%" for="program">Program / Department </label><span style="color: red">*</span><span>:</span>
             <input type="text" id="program" v-model="program" /><br>
             <h3 v-if="showProgramAlert" style="margin-top: 1%; color: red; font-size: 15px">Please enter your Program/Major.</h3>
