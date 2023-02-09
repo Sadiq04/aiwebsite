@@ -122,7 +122,7 @@ export default {
         else{this.showClubInterestAlert=false}
         valid = true
         if(valid){
-            /*const res = fetch('http://localhost:465',
+            const res = fetch('http://localhost:465',
             {
                 mode: 'no-cors',
                 method: 'POST',
@@ -141,9 +141,9 @@ export default {
                         GitHub: this.GitHub,
                         //CV: this.CV,
                     })
-            })*/
+            })
             //console.log(application)
-            memberApplications.push({   
+            /*memberApplications.push({   
                 fullName: this.fullName,
                 email: this.email,
                 program: this.program,
@@ -155,7 +155,7 @@ export default {
                 LinkedIn: this.LinkedIn,
                 GitHub: this.GitHub,
                 //CV: this.CV,
-            })
+            })*/
         }
     }
    } 
