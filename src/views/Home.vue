@@ -29,6 +29,7 @@
             <h1 style="position: absolute; font-size: 5vh; bottom: 110%;left: 50%; transform: translateX(-50%) translateY(-50%);">What is an AI?</h1>
             <h1 style="text-align: left; margin-left: 5%; margin-top: 5%; width: 50%; font-size: 2.5vh">An AI, or artificial intelligence, is a computer system that is designed to simulate human intelligence and thought processes. This can include tasks such as problem solving, decision making, and learning. AIs can be programmed to perform a wide range of tasks, from simple automation to complex decision-making and analysis. They can be found in many different applications, from self-driving cars to virtual personal assistants.</h1>
             <img style="width:35%; position:absolute; right: 5%; top: 0px" alt="AI image" src="../assets/ai-technology-brain-background-digital-transformation-concept.jpg">
+            <router-link to="/aiChatbox"><b-button variant="info">Try out an AI chatbox</b-button></router-link>
         </div>
         <div style="position: absolute; top: 230%; left: 50%; transform: translateX(-50%) translateY(-50%);">
             <h1 style="font-size: 5vh">Projects</h1>

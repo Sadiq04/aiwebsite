@@ -7,6 +7,7 @@ import Project from '../views/Project.vue'
 import Projects from '../views/Projects.vue'
 import Applicant from '../views/Applicant.vue'
 import ViewApplications from '../views/ViewApplications.vue'
+import AIChatbox from '../views/aiChatbox.vue'
 
 Vue.use(VueRouter)
 
@@ -45,6 +46,11 @@ const routes: Array<RouteConfig> = [
     path: '/viewApplications',
     name: 'ViewApplications',
     component: ViewApplications
+  },
+  {
+    path: '/aiChatbox',
+    name: 'AIChatbox',
+    component: AIChatbox
   },
   {
     path: '/about',
