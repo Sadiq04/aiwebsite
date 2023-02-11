@@ -23,7 +23,6 @@ export default {
     },
     methods: {
         submitPrompt(){
-            console.log(process.env)
             const openai = new OpenAI(OPENAI_API_KEY);
             (async () => {
                 const gptResponse = await openai.complete({
