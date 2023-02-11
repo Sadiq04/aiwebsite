@@ -7,7 +7,7 @@ import projectProposals from '@/assets/projectProposals';
 import currentProjects from '@/assets/currentProjects';
 import backupCurrentProjects from '@/assets/backupCurrentProjects';
 import pastProjects from '@/assets/pastProjects';
-
+require('dotenv').config()
 const vuexLocalStorage = new VuexPersist({
   key: 'vuex', // The key to store the state on in the storage provider.
   storage: window.localStorage, // or window.sessionStorage or localForage
@@ -29,8 +29,6 @@ export default new Vuex.Store({
     currentProjects,
     pastProjects,
     backupCurrentProjects,
-    openAIKey: "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",
-    orgID: "org-2ph8vzJDs3sba7eV1lli5J4q",
   },
   getters: {
     members(state){return state.members;},
@@ -38,8 +36,6 @@ export default new Vuex.Store({
     projectProposals(state){return state.projectProposals;},
     currentProjects(state){return state.currentProjects;},
     pastProjects(state){return state.pastProjects;},
-    openAIKey(state){return state.openAIKey;},
-    orgID(state){return state.orgID;},
   },
   mutations: {
     addProject(state, newProject) {

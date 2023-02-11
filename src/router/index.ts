@@ -8,7 +8,7 @@ import Projects from '../views/Projects.vue'
 import Applicant from '../views/Applicant.vue'
 import ViewApplications from '../views/ViewApplications.vue'
 import AIChatbox from '../views/aiChatbox.vue'
-
+require('dotenv').config()
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
