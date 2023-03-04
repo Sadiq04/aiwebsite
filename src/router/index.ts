@@ -1,5 +1,6 @@
 import Vue from 'vue'
-import VueRouter, { RouteConfig } from 'vue-router'
+import VueRouter, { Route, RouteConfig } from 'vue-router'
+//import createWebHistory from 'vue-router'
 import Home from '../views/Home.vue'
 import ProjectAddingForm from '../views/ProjectAddingForm.vue'
 import ApplicationForm from '../views/ApplicationForm.vue'
@@ -8,8 +9,18 @@ import Projects from '../views/Projects.vue'
 import Applicant from '../views/Applicant.vue'
 import ViewApplications from '../views/ViewApplications.vue'
 import AIChatbox from '../views/aiChatbox.vue'
+import Registration from '../views/Registration.vue'
+import Login from '../views/Login.vue'
+import Account from '../views/Account.vue'
+import Workshops from '../views/Workshops.vue'
+import AboutUs from '../views/AboutUs.vue'
+import Events from '../views/Events.vue'
+import Event from '../views/Event.vue'
+import { auth } from '../firebase'
 require('dotenv').config()
 Vue.use(VueRouter)
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 
 const routes: Array<RouteConfig> = [
   {
@@ -53,6 +64,41 @@ const routes: Array<RouteConfig> = [
     component: AIChatbox
   },
   {
+    path: '/registration',
+    name: 'Registration',
+    component: Registration
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/account',
+    name: 'Account',
+    component: Account
+  },
+  {
+    path: '/workshops',
+    name: 'Workshops',
+    component: Workshops
+  },
+  {
+    path: '/aboutUs',
+    name: 'AboutUs',
+    component: AboutUs
+  },
+  {
+    path: '/events',
+    name: 'Events',
+    component: Events
+  },
+  {
+    path: '/event/:id',
+    name: 'Event',
+    component: Event
+  },
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting
@@ -63,7 +109,31 @@ const routes: Array<RouteConfig> = [
 ]
 
 const router = new VueRouter({
-  routes
+  //history: new createWebHistory(process.env.BASE_URL),
+  routes,
+  scrollBehavior: (to, from, savedPosition) => {
+    if (to.hash) {
+      return {selector: to.hash}
+    } else {
+      return {x: 0, y: 0}
+    }
+  },
+
 })
+
+router.beforeEach((to, from, next) => {
+  /*if (to.path === '/login' && auth.currentUser) {
+    next('/')
+    return;
+  }*/
+
+  if (to.matched.some(record => record.meta.requiresAuth) && !auth.currentUser) {
+    next('/login')
+    return;
+  }
+
+  next();
+})
+
 
 export default router

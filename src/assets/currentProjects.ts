@@ -40,5 +40,5 @@ export default [
         goalCompletion: [0, 1, 1, 0],
         githubLink: "github.com/adadwawdadw",
         img: "",
-    }
+    },
 ]

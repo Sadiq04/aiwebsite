@@ -17,6 +17,7 @@
 export default {
     data(){
         return{
+            isAdmin: this.$store.getters.isAdmin,
             applications: this.$store.getters.memberApplications,
             fields: ["fullName", "program", "year", "GPA"],
         }   

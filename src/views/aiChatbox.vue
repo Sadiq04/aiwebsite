@@ -11,7 +11,7 @@
 const dotenv = require("dotenv")
 dotenv.config()
 const OpenAI = require('openai-api');
-const OPENAI_API_KEY = process.env.VUE_APP_OPENAI_API_KEY;
+const OPENAI_API_KEY = "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"
 const ORG_ID = process.env.VUE_APP_ORG_ID;
 export default {
     data(){
@@ -29,7 +29,7 @@ export default {
                     engine: 'davinci',
                     prompt: this.prompt,
                     maxTokens: 100,
-                    temperature: 0.9,
+                    temperature: 1,
                     topP: 1,
                     presencePenalty: 0,
                     frequencyPenalty: 0,
@@ -38,8 +38,10 @@ export default {
                     stream: false,
                     stop: ['\n', "testing"]
                 });
-                this.result = gptResponse.data.choices[0].text;
+                let beginning = this.prompt;
+                this.result = beginning + " " + gptResponse.data.choices[0].text;
             })();
+            this.prompt="";
         }
     }
 }

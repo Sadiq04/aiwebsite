@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+/* @ts-ignore */
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VuexPersist from 'vuex-persist';
@@ -7,6 +9,14 @@ import projectProposals from '@/assets/projectProposals';
 import currentProjects from '@/assets/currentProjects';
 import backupCurrentProjects from '@/assets/backupCurrentProjects';
 import pastProjects from '@/assets/pastProjects';
+import router from '../router'
+import { auth } from '../firebase'
+import { 
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut 
+} from 'firebase/auth'
+
 require('dotenv').config()
 const vuexLocalStorage = new VuexPersist({
   key: 'vuex', // The key to store the state on in the storage provider.
@@ -20,9 +30,10 @@ const vuexLocalStorage = new VuexPersist({
 
 Vue.use(Vuex)
 export default new Vuex.Store({
-  plugins: [vuexLocalStorage.plugin],
+  //plugins: [vuexLocalStorage.plugin],
   state: {
-    isAdmin: false,
+    user: null,
+    isAdmin: true,
     members,
     memberApplications,
     projectProposals,
@@ -36,6 +47,8 @@ export default new Vuex.Store({
     projectProposals(state){return state.projectProposals;},
     currentProjects(state){return state.currentProjects;},
     pastProjects(state){return state.pastProjects;},
+    isAdmin(state){return state.isAdmin;},
+    user(state){return state.user;},
   },
   mutations: {
     addProject(state, newProject) {
@@ -99,7 +112,17 @@ export default new Vuex.Store({
       })
     },
     approveMemberApplication(state, applicantIndex){
-      state.members.push(state.memberApplications[applicantIndex]);
+      state.members.push({
+        fullName: state.memberApplications[applicantIndex].fullName,
+        email: state.memberApplications[applicantIndex].email,
+        registered: false,
+        admin: false,
+        program: state.memberApplications[applicantIndex].program,
+        year: state.memberApplications[applicantIndex].year,
+        GPA: state.memberApplications[applicantIndex].GPA,
+        LinkedIn: state.memberApplications[applicantIndex].LinkedIn,
+        GitHub: state.memberApplications[applicantIndex].GitHub,
+      })
       state.memberApplications.splice(applicantIndex, 1)
     },
     markProjectAsComplete(state, project){
@@ -119,9 +142,83 @@ export default new Vuex.Store({
       })
       state.currentProjects.splice(project[0], 1)
     },
-    makeAdmin(state){state.isAdmin=true;}
+    makeAdmin(state){state.isAdmin=true;},
+    setRegistered(state, i){state.members[i].registered=true},
+    SET_USER (state, user) {state.user = user},
+    CLEAR_USER (state) {state.user = null},
   },
   actions: {
+    async login ({ commit }, details) {
+      const { email, password } = details;
+      try {
+        await signInWithEmailAndPassword(auth, email, password)
+      } catch (error: any) {
+        switch(error.code) {
+          case 'auth/user-not-found':
+            alert("User not found")
+            break
+          case 'auth/wrong-password':
+            alert("Wrong password")
+            break
+          default:
+            alert("Something went wrong")
+        }
+
+        return
+      }
+
+      commit('SET_USER', auth.currentUser)
+
+      router.push('/')
+    },
+    async register ({ commit}, details) {
+      const { email, password } = details
+      console.log({email, password})
+     try {
+       await createUserWithEmailAndPassword(auth, email, password)
+     } catch (error: any) {
+       switch(error.code) {
+         case 'auth/email-already-in-use':
+           alert("Email already in use")
+           break
+         case 'auth/invalid-email':
+           alert("Invalid email")
+           break
+         case 'auth/operation-not-allowed':
+           alert("Operation not allowed")
+           break
+         case 'auth/weak-password':
+           alert("Weak password")
+           break
+         default:
+           alert(error)
+       }
+
+       return
+     }
+
+     commit('SET_USER', auth.currentUser)
+
+     router.push('/')
+   },
+   async logout ({ commit }) {
+    await signOut(auth)
+
+    commit('CLEAR_USER')
+
+    router.push('/login')
+  },
+
+  fetchUser ({ commit }) {
+    auth.onAuthStateChanged(async user => {
+      if (user === null) {
+        commit('CLEAR_USER')
+      } else {
+        commit('SET_USER', user)
+        router.push('/')
+      }
+    })
+  }
   },
   modules: {
   }

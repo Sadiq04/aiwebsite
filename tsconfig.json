@@ -1,6 +1,7 @@
 
 {
   "compilerOptions": {
+    "noImplicitAny": false,
     "target": "es5",
     "module": "esnext",
     "strict": true,
@@ -33,7 +34,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-, "src/main.js", "src/main.js", "src/main.js", "src/store/index.ts"  ],
+, "src/main.ts", "src/main.ts", "src/main.ts", "src/store/index.ts", "src/router/index.js"  ],
   "exclude": [
     "node_modules"
   ]

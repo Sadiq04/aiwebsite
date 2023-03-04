@@ -39,6 +39,8 @@
 </template>
 
 <script>
+import { collection, addDoc, getDoc, setDoc, getFirestore, doc } from "firebase/firestore"; 
+import { db } from '../firebase'
 export default {
    data() {
      return {
@@ -114,7 +116,7 @@ export default {
                 abstract: this.abstract,
                 description: this.description,
                 projectLeader: this.projectLeader,
-                projectLeaderMail: this.projectLeaderMail,
+                projectLeaderEmail: this.projectLeaderEmail,
                 projectLeaderPhone: this.projectLeaderPhone,
                 projectMembers,
                 goals,
@@ -122,8 +124,23 @@ export default {
                 githubLink: this.githubLink,
                 img: this.img,
             }
-            if(this.adding){this.$store.commit('addProject', project)}
-            else{this.$store.commit('addProjectProposal', project)}
+            const firestore = getFirestore()
+            if(this.adding){
+                try {
+                    const projectDoc = doc(firestore, `projects/${project.name}`)
+                    setDoc(projectDoc, project)
+                } catch (e) {
+                    console.error("Error adding document: ", e);
+                }
+            }
+            else{
+                try {
+                    const projectDoc = doc(firestore, `projectProposals/${project.name}`)
+                    setDoc(projectDoc, project)
+                } catch (e) {
+                    console.error("Error adding document: ", e);
+                }
+            }
             this.name = "";
             this.field = "";
             this.abstract = "";
